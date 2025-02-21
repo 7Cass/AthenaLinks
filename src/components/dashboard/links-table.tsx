@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { useRouter } from "next/navigation";
 
 interface LinksTableProps<D, V> {
   columns: ColumnDef<D, V>[];
@@ -21,10 +22,14 @@ interface LinksTableProps<D, V> {
 }
 
 export function LinksTable<D, V>({ data, columns }: LinksTableProps<D, V>) {
+  const router = useRouter();
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    meta: {
+      router: router,
+    },
   });
 
   return (

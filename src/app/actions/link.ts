@@ -100,11 +100,24 @@ export async function checkSlugAvailability(slug: string) {
 export async function deleteLink(linkId: string) {
   return await executeAction({
     actionFn: async () => {
+      const session = await auth();
+
+      if (!session?.user?.id) {
+        throw new Error("Unauthorized");
+      }
+
       const link = await prisma.shortenedLink.findUnique({
-        where: { id: linkId },
+        where: { id: linkId, userId: session.user.id },
       });
 
       if (!link) throw Error("Link not found.");
+
+      await prisma.shortenedLink.delete({
+        where: {
+          id: link.id,
+          userId: session.user.id,
+        },
+      });
     },
     successMessage: "Link deleted succesfully!",
   });
