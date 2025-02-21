@@ -81,8 +81,8 @@ model ShortenedLink {
   expiresAt              DateTime?
   enableIntermediatePage Boolean   @default(false)
 
-  user      User        @relation(fields: [userId], references: [id])
-  LinkClick LinkClick[]
+  user       User        @relation(fields: [userId], references: [id])
+  linkClicks LinkClick[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -100,10 +100,14 @@ model LinkClick {
   referrer        String?
   timestamp       DateTime    @default(now())
 
-  shortenedLink ShortenedLink @relation(fields: [shortenedLinkId], references: [id])
+  shortenedLink ShortenedLink @relation(fields: [shortenedLinkId], references: [id], onDelete: Cascade)
+
+  @@map("link_clicks")
 }
 
 enum DeviceType {
   MOBILE
   DESKTOP
+
+  @@map("device_type")
 }
