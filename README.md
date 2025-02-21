@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ✨ AthenaLinks - URL Shortener with Analytics, AI, and Custom Templates ✨
 
-## Getting Started
+AthenaLinks é uma plataforma completa para encurtamento de URLs, projetada para oferecer mais do que links curtos. Com um dashboard intuitivo, gráficos detalhados e coleta de dados em tempo real, você pode monitorar o desempenho dos seus links e tomar decisões inteligentes.
 
-First, run the development server:
+## 🚀 Principais Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Encurtamento de URLs:** Crie links curtos e personalizados em segundos.
+- **Dashboard Completo:** Acompanhe métricas importantes, como cliques, localização, dispositivos e muito mais.
+- **Gráficos Interativos:** Visualize o desempenho dos seus links com gráficos fáceis de entender.
+- **Templates Personalizáveis:** Customize a aparência das páginas de redirecionamento com templates pré-prontos ou crie os seus próprios.
+- **Integração com Stripe:** Monetize seus links ou ofereça planos premium com pagamentos seguros via Stripe.
+- **Inteligência Artificial:** Utilize IA para sugerir melhorias nos links, prever tendências e otimizar campanhas.
+- **Listagem de Links:** Organize e gerencie todos os seus links em um único lugar.
+- **Redirecionamento Confiável:** Garanta que seus links sempre levem os usuários ao destino correto, com alta disponibilidade e velocidade.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Para quem é esse projeto?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Marketers:** Acompanhe o desempenho de campanhas e gere leads.
+- **Empreendedores:** Monetize seus links e crie páginas de redirecionamento profissionais.
+- **Desenvolvedores:** Integre facilmente com APIs e aproveite a flexibilidade do sistema.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🛠️ Tecnologias Utilizadas
 
-## Learn More
+- **Frontend e Backend:** Next.js + Typescript (Fullstack)
+- **UI Components:** shadcn/ui + Tailwind
+- **ORM:** Prisma
+- **Autenticação:** Next-Auth
+- **Banco de Dados:** PostgreSQL
 
-To learn more about Next.js, take a look at the following resources:
+## 🌟 Por que Athena?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Inspirado na deusa da sabedoria e estratégia, AthenaLinks é a ferramenta inteligente que você precisa para transformar links simples em ferramentas poderosas de marketing e análise.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🤝 Como contribuir?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Adoramos contribuições! Siga os passos abaixo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`).
+4. Push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+**🚀 Transforme seus links em insights poderosos com AthenaLinks!**
