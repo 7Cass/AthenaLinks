@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { prisma } from "../prisma";
+import { headers } from "next/headers";
 
 interface RedirectPageParams {
   slug: string;
@@ -21,8 +22,6 @@ export default async function RedirectPage({
     },
   });
 
-  console.log(link?.originalUrl);
-
   if (!link) {
     return (
       <div className="flex items-center justify-center">
@@ -30,8 +29,6 @@ export default async function RedirectPage({
       </div>
     );
   }
-
-  console.log(link);
 
   await prisma.shortenedLink.update({
     data: {
@@ -42,14 +39,16 @@ export default async function RedirectPage({
     },
   });
 
+  const headersList = headers();
+
   await prisma.linkClick.create({
     data: {
       shortenedLinkId: link.id,
-      ipAddress: "",
-      userAgent: "",
-      country: "",
+      ipAddress: headersList.get("x-forwarded-for") || null,
+      userAgent: headersList.get("user-agent") || null,
+      country: null,
       deviceType: "DESKTOP",
-      referrer: "",
+      referrer: null,
       timestamp: new Date(),
     },
   });
