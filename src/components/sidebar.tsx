@@ -193,7 +193,7 @@ function ProFreeTrialCard() {
     <SidebarGroup
       className={cn(["mt-auto", state === "collapsed" && "invisible"])}
     >
-      <Card className="shadow-none">
+      {/* <Card className="shadow-none">
         <form>
           <CardHeader className="p-4 pb-0">
             <CardTitle className="text-sm">
@@ -209,7 +209,7 @@ function ProFreeTrialCard() {
             </Button>
           </CardContent>
         </form>
-      </Card>
+      </Card> */}
     </SidebarGroup>
   );
 }
