@@ -5,10 +5,12 @@ import { prisma } from "../prisma";
 import { auth } from "@/auth";
 import { ShortenedLink } from "@prisma/client";
 import { customAlphabet } from "nanoid";
+import { QUOTAS } from "@/config/quota";
+import { getUserCurrentPlan } from "../stripe";
 
 const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", // Caracteres permitidos
-  8 // Tamanho do slug (ex: "abcDEF12")
+  8, // Tamanho do slug (ex: "abcDEF12")
 );
 
 const RESERVED_SLUGS = ["admin", "api", "dashboard", "login", "settings"];
@@ -43,6 +45,12 @@ export async function createLink({
 
       if (!session?.user?.id) {
         throw new Error("Unauthorized");
+      }
+
+      const plan = await getUserCurrentPlan(session.user.id);
+
+      if (plan.quota.links.usage === 100) {
+        throw new Error("You have reached your link quota.");
       }
 
       if (slug && RESERVED_SLUGS.includes(slug.toLowerCase())) {
@@ -121,4 +129,21 @@ export async function deleteLink(linkId: string) {
     },
     successMessage: "Link deleted succesfully!",
   });
+}
+
+export async function checkLinkQuota(userId: string) {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { plan: true },
+  });
+
+  if (!user) throw new Error("User not found.");
+
+  if (user.plan === QUOTAS.free.plan) {
+    const usedLinks = await prisma.shortenedLink.count({
+      where: { userId },
+    });
+
+    return usedLinks < QUOTAS.free.maxLinks;
+  }
 }

@@ -1,3 +1,4 @@
+import { getAnalytics } from "@/app/actions/analytics";
 import {
   Card,
   CardContent,
@@ -7,13 +8,17 @@ import {
 } from "@/components/ui/card";
 
 export default async function Analytics() {
+  const analytics = await getAnalytics();
+
+  console.log(analytics);
+
   return (
     <main className="container max-w-screen-xl grid grid-rows-[1fr_auto_auto] gap-4 py-4">
       <div className="grid grid-cols-[1fr_1fr_1fr] gap-4">
         <Card>
           <CardHeader>
-            <CardTitle>Total de Cliques: 1234</CardTitle>
-            <CardDescription>Comparado ao período anterior.</CardDescription>
+            <CardTitle>Total de Cliques: {analytics.clicks.total}</CardTitle>
+            <CardDescription>Comparado do período de Jan/2025</CardDescription>
           </CardHeader>
           <CardContent>
             <h2>Gráfico aqui!</h2>
