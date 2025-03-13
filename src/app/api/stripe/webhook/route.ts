@@ -74,12 +74,15 @@ export async function POST(req: Request) {
         });
         break;
       case "customer.subscription.updated":
+        console.log("EVENT: ", event.type);
+        console.log(event.data);
         // Atualiza a subscription do usuario
         if (event.data.object.cancel_at_period_end) {
           await prisma.user.update({
             where: { stripeCustomerId: event.data.object.customer as string },
             data: {
               subscription_status: "ACTIVE",
+              current_period_end: new Date(event.data.object.cancel_at! * 1000),
               stripeSubscriptionId: null,
             },
           });
@@ -95,8 +98,10 @@ export async function POST(req: Request) {
             plan: "FREE",
             subscription_status: "CANCELED",
             stripeSubscriptionId: null,
+            current_period_end: null,
           },
         });
+        break;
       default:
         console.log(`Unhandled event type ${event.type}`);
         break;
